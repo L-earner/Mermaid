@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process to Flowchart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Process to Flowchart</h1>
+
+    <div id="input-section">
+        <h2>Input Process</h2>
+        <div>
+            <textarea id="process-text" rows="10" cols="80" placeholder="Describe your process here..."></textarea>
+        </div>
+        <div>
+            <label for="process-file">Or upload a .docx file:</label>
+            <input type="file" id="process-file" name="process-file" accept=".docx">
+        </div>
+        <div>
+            <button id="generate-btn">Generate Flowchart</button>
+        </div>
+        <div id="loading-initial" class="loading" style="display: none;">Generating...</div>
+        <div id="error-initial" class="error" style="display: none;"></div>
+    </div>
+
+    <div id="flowchart-section" style="display: none;">
+        <h2>Flowchart</h2>
+        <div id="mermaid-container">
+            <!-- Mermaid chart will be rendered here -->
+        </div>
+        <!-- Hidden pre tag to store the current mermaid code -->
+        <pre id="mermaid-code-display" style="display: none;"></pre>
+
+        <h2>Refine with Chat</h2>
+        <div id="chat-history">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="chat-instruction" placeholder="Enter refinement instruction (e.g., 'Combine steps A and B')">
+            <button id="refine-btn">Send</button>
+        </div>
+        <div id="loading-refine" class="loading" style="display: none;">Refining...</div>
+        <div id="error-refine" class="error" style="display: none;"></div>
+    </div>
+
+    <!-- Mermaid JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <!-- Link to our script -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
